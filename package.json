@@ -1,0 +1,19 @@
+{
+  "name": "aap-overlays",
+  "version": "1.0.0",
+  "description": "alert overlays for codeiaks houses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirslaw/codeiaks-aap-overlays.git"
+  },
+  "author": "sirslaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sirslaw/codeiaks-aap-overlays/issues"
+  },
+  "homepage": "https://github.com/sirslaw/codeiaks-aap-overlays#readme"
+}
