@@ -37,7 +37,7 @@ if (loc === 'sl') {
 
 var amount = amountString.replace('$', '');
 var amountPoints = addZeroes((amount)).replace('.', '');
-
+console.log(2);
 fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?token=' + key + '&name=' + viewerName, {
   method: "GET",
   json: true,
@@ -47,7 +47,7 @@ fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?tok
 
     var response = (await data.json());
     var payload = response.data;
-
+console.log(response);
     if (response.ok) {
 console.log(1);
       var houseName = payload.name;
