@@ -49,7 +49,7 @@ fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?tok
     var payload = response.data;
 
     if (response.ok) {
-
+console.log(1);
       var houseName = payload.name;
       var houseHTMLString = "";
       var viewerNameHTMLString = "";
@@ -61,33 +61,33 @@ fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?tok
       houseHTMLString += "<span style='color:" + payload.color + ";'>";
       amountHTMLString += "<span style='color:" + payload.color + ";'>";
       viewerNameHTMLString += "<span style='color:" + payload.color + ";'>";
-
+console.log(1);
       for (var i = 0; i < amount.length; i++) {
         amountHTMLString += "<span class='animated-letter wiggle'>" + amount[i] + "</span>";
       };
-
+console.log(1);
       for (var i = 0; i < viewerName.length; i++) {
         if (viewerName[i] === " ") viewerNameHTMLString += "<span>&nbsp;</span>";
         viewerNameHTMLString += "<span class='animated-letter wiggle'>" + viewerName[i] + "</span>";
       };
-
+console.log(1);
       for (var i = 0; i < houseName.length; i++) {
         if (houseName[i] === " ") houseHTMLString += "<span>&nbsp;</span>";
         houseHTMLString += "<span class='animated-letter wiggle'>" + houseName[i] + "</span>";
       };
-
+console.log(1);
       houseHTMLString += "</span>";
       viewerNameHTMLString += "</span>";
       amountHTMLString += "</span>";
 
       var alertMessageHTMLString = viewerNameHTMLString + " cheered " + amountHTMLString + " for <br>" + houseHTMLString + "!";
-
+console.log(1);
       if (loc === 'sl') {
 
         document.querySelector('#alert-image').innerHTML = '<img src="' + houseBanner + '" alt="" style="height: 250px;margin-top:115px !important;" />';
         document.querySelector('#alert-message').innerHTML = alertMessageHTMLString;
         document.querySelector('#alert-user-message').innerHTML = document.querySelector('#alert-user-message-child').innerHTML;
-
+console.log(1);
       } else if (loc === 'se') {
 
       };
