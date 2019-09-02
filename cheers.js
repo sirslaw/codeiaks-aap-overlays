@@ -1,21 +1,40 @@
 function addZeroes(value) {
-    var new_value = value * 1;
-    new_value = new_value + '';
-    pos = new_value.indexOf('.');
-    if (pos == -1) new_value = new_value + '.00';
-    else {
-        var integer = new_value.substring(0, pos);
-        var decimals = new_value.substring(pos + 1);
-        while (decimals.length < 2) decimals = decimals + '0';
-        new_value = integer + '.' + decimals;
-    };
-    return new_value;
+
+  var new_value = (value * 1) + '';
+  pos = new_value.indexOf('.');
+
+  if (pos == -1) {
+    new_value = new_value + '.00';
+  } else {
+
+    var integer = new_value.substring(0, pos);
+    var decimals = new_value.substring(pos + 1);
+
+    while (decimals.length < 2) decimals = decimals + '0';
+
+    new_value = integer + '.' + decimals;
+
+  };
+
+  return new_value;
+
 };
 
-var key = 'A50C460E-055A-4EFD-864B-4D68F94199F6';
-var viewerName = document.querySelector('#name').textContent;
-var amountString = document.querySelector('#amount').textContent;
-var userMessage = document.querySelector('#alert-user-message').textContent;
+var key = document.querySelector('#houses-script').getAttribute('token');
+var loc = document.querySelector('#houses-script').getAttribute('loc');
+
+var viewerName, amountString, userMessage;
+
+if (loc === 'sl') {
+
+  viewerName = document.querySelector('#name').textContent;
+  amountString = document.querySelector('#amount').textContent;
+  userMessage = document.querySelector('#alert-user-message').textContent;
+
+} else if (loc === 'se') {
+
+};
+
 var amount = amountString.replace('$', '');
 var amountPoints = addZeroes((amount)).replace('.', '');
 
@@ -37,7 +56,7 @@ fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?tok
       var amountHTMLString = "";
       var houseBanner = payload.image;
 
-      document.querySelector('#alert-image').innerHTML = '<img src="' + houseBanner + '" alt="" style="height: 250px;margin-top:115px !important;" />';
+      var alertImage, alertMessage, alertUserMessage;
 
       houseHTMLString += "<span style='color:" + payload.color + ";'>";
       amountHTMLString += "<span style='color:" + payload.color + ";'>";
@@ -63,13 +82,31 @@ fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?tok
 
       var alertMessageHTMLString = viewerNameHTMLString + " cheered " + amountHTMLString + " for <br>" + houseHTMLString + "!";
 
-      document.querySelector('#alert-message').innerHTML = alertMessageHTMLString;
-      document.querySelector('#alert-user-message').innerHTML = document.querySelector('#alert-user-message-child').innerHTML;
+      if (loc === 'sl') {
+
+        alertImage = document.querySelector('#alert-image').innerHTML;
+        alertMessage = document.querySelector('#alert-message').innerHTML;
+        alertUserMessage = document.querySelector('#alert-user-message').innerHTML;
+        alertUserMessageChild = document.querySelector('#alert-user-message-child').innerHTML;
+
+        alertImage = '<img src="' + houseBanner + '" alt="" style="height: 250px;margin-top:115px !important;" />';
+        alertMessage = alertMessageHTMLString;
+        alertUserMessage = alertUserMessageChild;
+
+      } else if (loc === 'se') {
+
+      };
 
     } else {
 
-      document.querySelector('#alert-message').innerHTML = document.querySelector('#alert-message-child').innerHTML;
-      document.querySelector('#alert-user-message').innerHTML = document.querySelector('#alert-user-child').innerHTML;
+      if (loc === 'sl') {
+
+        document.querySelector('#alert-message').innerHTML = document.querySelector('#alert-message-child').innerHTML;
+        document.querySelector('#alert-user-message').innerHTML = document.querySelector('#alert-user-child').innerHTML;
+
+      } else if (loc === 'se') {
+
+      };
 
     };
 
