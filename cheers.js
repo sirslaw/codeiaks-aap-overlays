@@ -27,8 +27,8 @@ var viewerName, amountString, userMessage;
 
 if (loc === 'sl') {
 
-  viewerName = `{name}`;
-  amountString = `{amount}`;
+  viewerName = document.querySelector('#houses-script').getAttribute('name');
+  amountString = document.querySelector('#houses-script').getAttribute('amount');
   userMessage = document.querySelector('#alert-user-message').textContent;
 
 } else if (loc === 'se') {
