@@ -84,14 +84,9 @@ fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?tok
 
       if (loc === 'sl') {
 
-        alertImage = document.querySelector('#alert-image').innerHTML;
-        alertMessage = document.querySelector('#alert-message').innerHTML;
-        alertUserMessage = document.querySelector('#alert-user-message').innerHTML;
-        alertUserMessageChild = document.querySelector('#alert-user-message-child').innerHTML;
-
-        alertImage = '<img src="' + houseBanner + '" alt="" style="height: 250px;margin-top:115px !important;" />';
-        alertMessage = alertMessageHTMLString;
-        alertUserMessage = alertUserMessageChild;
+        document.querySelector('#alert-image').innerHTML = '<img src="' + houseBanner + '" alt="" style="height: 250px;margin-top:115px !important;" />';
+        document.querySelector('#alert-message').innerHTML = alertMessageHTMLString;
+        document.querySelector('#alert-user-message').innerHTML = document.querySelector('#alert-user-message-child').innerHTML;
 
       } else if (loc === 'se') {
 
