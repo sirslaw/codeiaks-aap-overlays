@@ -27,8 +27,8 @@ var viewerName, amountString, userMessage;
 
 if (loc === 'sl') {
 
-  viewerName = document.querySelector('#name').textContent;
-  amountString = document.querySelector('#amount').textContent;
+  viewerName = `{name}`;
+  amountString = `{amount}`;
   userMessage = document.querySelector('#alert-user-message').textContent;
 
 } else if (loc === 'se') {
