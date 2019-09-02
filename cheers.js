@@ -86,8 +86,8 @@ fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?tok
 
         alertImage = document.querySelector('#alert-image').innerHTML;
         alertMessage = document.querySelector('#alert-message').innerHTML;
-        alertUserMessage = document.querySelector('#alert-user-message').innerHTML || '';
-        alertUserMessageChild = document.querySelector('#alert-user-message-child').innerHTML || '';
+        alertUserMessage = document.querySelector('#alert-user-message').innerHTML;
+        alertUserMessageChild = document.querySelector('#alert-user-message-child').innerHTML;
 
         alertImage = '<img src="' + houseBanner + '" alt="" style="height: 250px;margin-top:115px !important;" />';
         alertMessage = alertMessageHTMLString;
