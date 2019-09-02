@@ -1,3 +1,4 @@
+console.log(1);
 function addZeroes(value) {
 
   var new_value = (value * 1) + '';
