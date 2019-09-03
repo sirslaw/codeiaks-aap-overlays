@@ -1,3 +1,25 @@
+function addZeroes(value) {
+
+  let new_value = (value * 1) + '';
+  pos = new_value.indexOf('.');
+
+  if (pos == -1) {
+    new_value = new_value + '.00';
+  } else {
+
+    let integer = new_value.substring(0, pos);
+    let decimals = new_value.substring(pos + 1);
+
+    while (decimals.length < 2) decimals = decimals + '0';
+
+    new_value = integer + '.' + decimals;
+
+  };
+
+  return new_value;
+
+};
+
 let key = document.querySelector('#houses-script').getAttribute('token');
 let loc = document.querySelector('#houses-script').getAttribute('loc');
 
@@ -5,7 +27,7 @@ let viewerName, amountString, userMessage;
 
 if (loc === 'sl') {
 
-  viewerName = document.querySelector('#name').textContent;
+  viewerName = 'sirslaw'//document.querySelector('#name').textContent;
   amountString = document.querySelector('#amount').textContent;
   userMessage = document.querySelector('#alert-user-message').textContent;
 
@@ -14,6 +36,7 @@ if (loc === 'sl') {
 };
 
 let amount = amountString.replace('$', '');
+amount = '$' + addZeroes((amount));
 
 fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?token=' + key + '&name=' + viewerName, {
   method: "GET",
@@ -57,7 +80,7 @@ fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?tok
       viewerNameHTMLString += "</span>";
       amountHTMLString += "</span>";
 
-      let alertMessageHTMLString = viewerNameHTMLString + " cheered " + amountHTMLString + " for <br>" + houseHTMLString + "!";
+      let alertMessageHTMLString = viewerNameHTMLString + " tipped " + amountHTMLString + " for <br>" + houseHTMLString + "!";
 
       if (loc === 'sl') {
 
