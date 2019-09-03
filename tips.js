@@ -25,7 +25,7 @@ var initTipAlert = function () {
   var key = document.querySelector('#houses-script').getAttribute('token');
   var loc = document.querySelector('#houses-script').getAttribute('loc');
 
-  var viewerName, amountString, userMessage;
+  if (!viewerName || !amountString || !userMessage) var viewerName, amountString, userMessage;
 
   if (loc === 'sl') {
 

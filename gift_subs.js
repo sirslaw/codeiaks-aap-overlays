@@ -3,7 +3,7 @@ var initGiftSubAlert = function () {
   var key = document.querySelector('#houses-script').getAttribute('token');
   var loc = document.querySelector('#houses-script').getAttribute('loc');
 
-  var viewerName, amountString, userMessage, receiverName;
+  if (!viewerName || !amountString || !userMessage || !receiverName) var viewerName, amountString, userMessage, receiverName;
 
   if (loc === 'sl') {
 
