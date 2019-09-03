@@ -1,7 +1,7 @@
-let key = document.querySelector('#houses-script').getAttribute('token');
-let loc = document.querySelector('#houses-script').getAttribute('loc');
+var key = document.querySelector('#houses-script').getAttribute('token');
+var loc = document.querySelector('#houses-script').getAttribute('loc');
 
-let viewerName, amountString, userMessage;
+var viewerName, amountString, userMessage;
 
 if (loc === 'sl') {
 
@@ -13,7 +13,7 @@ if (loc === 'sl') {
 
 };
 
-let amount = amountString.replace('$', '');
+var amount = amountString.replace('$', '');
 
 fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?token=' + key + '&name=' + viewerName, {
   method: "GET",
@@ -22,42 +22,42 @@ fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?tok
 }).then(async (data) => {
   if (data.type === 'cors') {
 
-    let response = (await data.json());
-    let payload = response.data;
+    var response = (await data.json());
+    var payload = response.data;
 
     if (response.ok) {
 
-      let houseName = payload.name;
-      let houseHTMLString = "";
-      let viewerNameHTMLString = "";
-      let amountHTMLString = "";
-      let houseBanner = payload.image;
+      var houseName = payload.name;
+      var houseHTMLString = "";
+      var viewerNameHTMLString = "";
+      var amountHTMLString = "";
+      var houseBanner = payload.image;
 
-      let alertImage, alertMessage, alertUserMessage;
+      var alertImage, alertMessage, alertUserMessage;
 
       houseHTMLString += "<span style='color:" + payload.color + ";'>";
       amountHTMLString += "<span style='color:" + payload.color + ";'>";
       viewerNameHTMLString += "<span style='color:" + payload.color + ";'>";
 
-      for (let i = 0; i < amount.length; i++) {
-        amountHTMLString += "<span class='animated-letter wiggle'>" + amount[i] + "</span>";
+      for (var i = 0; i < amount.length; i++) {
+        amountHTMLString += "<span class='animated-varter wiggle'>" + amount[i] + "</span>";
       };
 
-      for (let i = 0; i < viewerName.length; i++) {
+      for (var i = 0; i < viewerName.length; i++) {
         if (viewerName[i] === " ") viewerNameHTMLString += "<span>&nbsp;</span>";
-        viewerNameHTMLString += "<span class='animated-letter wiggle'>" + viewerName[i] + "</span>";
+        viewerNameHTMLString += "<span class='animated-varter wiggle'>" + viewerName[i] + "</span>";
       };
 
-      for (let i = 0; i < houseName.length; i++) {
+      for (var i = 0; i < houseName.length; i++) {
         if (houseName[i] === " ") houseHTMLString += "<span>&nbsp;</span>";
-        houseHTMLString += "<span class='animated-letter wiggle'>" + houseName[i] + "</span>";
+        houseHTMLString += "<span class='animated-varter wiggle'>" + houseName[i] + "</span>";
       };
 
       houseHTMLString += "</span>";
       viewerNameHTMLString += "</span>";
       amountHTMLString += "</span>";
 
-      let alertMessageHTMLString = viewerNameHTMLString + " cheered " + amountHTMLString + " for <br>" + houseHTMLString + "!";
+      var alertMessageHTMLString = viewerNameHTMLString + " cheered " + amountHTMLString + " for <br>" + houseHTMLString + "!";
 
       if (loc === 'sl') {
 
