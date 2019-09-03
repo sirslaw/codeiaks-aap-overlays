@@ -27,7 +27,7 @@ let viewerName, amountString, userMessage;
 
 if (loc === 'sl') {
 
-  viewerName = 'sirslaw'//document.querySelector('#name').textContent;
+  viewerName = (document.querySelector('#name').textContent === 'John') ? 'sirslaw' : document.querySelector('#name').textContent;
   amountString = document.querySelector('#amount').textContent;
   userMessage = document.querySelector('#alert-user-message').textContent;
 
