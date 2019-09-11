@@ -1,4 +1,24 @@
-var initSubAlert = function () {
+<div class="text-container">
+  <div id='image-container' class="image-container"></div>
+  <div>
+    <div id='text-container' class="awsome-text-container"></div>
+    <p id='message-container'></p>
+  </div>
+</div>
+<div>
+  <span id="name" style="display:none;">{{name}}</span>
+  <span id="amount" style="display:none;">{{amount}}</span>
+  <span id="message" style="display:none;">{{message}}</span>
+</div>
+<script
+  token='A50C460E-055A-4EFD-864B-4D68F94199F6'
+  id='houses-script'
+  crossorigin="anonymous"
+  type="text/javascript"
+  loc="se"
+  >
+
+var initGiftSubAlert = function () {
 
   var key = document.querySelector('#houses-script').getAttribute('token');
   var loc = document.querySelector('#houses-script').getAttribute('loc');
@@ -13,7 +33,12 @@ var initSubAlert = function () {
 
   } else if (loc === 'se') {
 
+    viewerName = document.querySelector('#name').textContent;
+    amountString = document.querySelector('#amount').textContent;
+    userMessage = document.querySelector('#message').textContent;
+
   };
+viewerName = 'sirslaw';
 
   var amount = amountString.replace('$', '');
 
@@ -22,6 +47,7 @@ var initSubAlert = function () {
     json: true,
     headers: { 'Content-Type': 'application/json' }
   }).then(async (data) => {
+
     if (data.type === 'cors') {
 
       var response = (await data.json());
@@ -33,27 +59,30 @@ var initSubAlert = function () {
         var houseHTMLString = "";
         var viewerNameHTMLString = "";
         var amountHTMLString = "";
-        var alertMessageHTMLString = "";
+        var alertMessageHTMLString = '';
         var houseBanner = payload.image;
 
         var alertImage, alertMessage, alertUserMessage;
 
-        houseHTMLString += "<span style='color:" + payload.color + ";'>";
-        amountHTMLString += "<span style='color:" + payload.color + ";'>";
-        viewerNameHTMLString += "<span style='color:" + payload.color + ";'>";
+        houseHTMLString += "<span style='color:" + payload.color + " !important;'>";
+        amountHTMLString += "<span style='color:" + payload.color + " !important;'>";
+        viewerNameHTMLString += "<span style='color:" + payload.color + " !important;'>";
 
         for (var i = 0; i < amount.length; i++) {
-          amountHTMLString += "<span class='animated-varter wiggle'>" + amount[i] + "</span>";
+          if (loc === 'sl') amountHTMLString += "<span class='animated-varter wiggle'>" + amount[i] + "</span>";
+          if (loc === 'se') amountHTMLString += "<span class='animated-letter wobble'>" + amount[i] + "</span>";
         };
 
         for (var i = 0; i < viewerName.length; i++) {
           if (viewerName[i] === " ") viewerNameHTMLString += "<span>&nbsp;</span>";
-          viewerNameHTMLString += "<span class='animated-varter wiggle'>" + viewerName[i] + "</span>";
+          if (loc === 'sl') viewerNameHTMLString += "<span class='animated-varter wiggle'>" + viewerName[i] + "</span>";
+          if (loc === 'se') viewerNameHTMLString += "<span class='animated-letter wobble'>" + viewerName[i] + "</span>";
         };
 
         for (var i = 0; i < houseName.length; i++) {
           if (houseName[i] === " ") houseHTMLString += "<span>&nbsp;</span>";
-          houseHTMLString += "<span class='animated-varter wiggle'>" + houseName[i] + "</span>";
+          if (loc === 'sl') houseHTMLString += "<span class='animated-varter wiggle'>" + houseName[i] + "</span>";
+          if (loc === 'se') houseHTMLString += "<span class='animated-letter wobble'>" + houseName[i] + "</span>";
         };
 
         houseHTMLString += "</span>";
@@ -62,11 +91,11 @@ var initSubAlert = function () {
 
         if (Math.abs(amount) <= 1 || amount === null || amount === undefined || amount === 'null' || amount === 'undefined') {
 
-            alertMessageHTMLString = viewerNameHTMLString + " has subscribed to <br>" + houseHTMLString + "!";
+            alertMessageHTMLString = viewerNameHTMLString + ", of " + houseHTMLString + ", <br>has gifted one sub to " + receiverName + "!";
 
         } else {
 
-            alertMessageHTMLString = viewerNameHTMLString + " has resubscribed to <br>" + houseHTMLString + " for " + amountHTMLString + " months!";
+            alertMessageHTMLString = viewerNameHTMLString + " has gifted " + amountHTMLString + " subs to <br>" + houseHTMLString + "!";
 
         };
 
@@ -77,6 +106,10 @@ var initSubAlert = function () {
           document.querySelector('#alert-user-message').innerHTML = document.querySelector('#alert-user-message-child').innerHTML;
 
         } else if (loc === 'se') {
+
+          document.querySelector('#image-container').innerHTML = '<img src="' + houseBanner + '" alt="" style="height: 250px;margin-top:115px !important;" />';
+          document.querySelector('#text-container').innerHTML = alertMessageHTMLString;
+          document.querySelector('#message-container').innerHTML = userMessage;
 
         };
 
@@ -89,6 +122,9 @@ var initSubAlert = function () {
 
         } else if (loc === 'se') {
 
+          document.querySelector('#text-container').innerHTML = viewerName + " cheered " + amountString;
+          document.querySelector('#message-container').innerHTML = userMessage;
+
         };
 
       };
@@ -98,4 +134,6 @@ var initSubAlert = function () {
 
 };
 
-initSubAlert();
+initGiftSubAlert();
+
+</script>

@@ -1,4 +1,26 @@
-var initCheerAlert = function () {
+var initTipAlert = function () {
+
+  function addZeroes(value) {
+
+    var new_value = (value * 1) + '';
+    pos = new_value.indexOf('.');
+
+    if (pos == -1) {
+      new_value = new_value + '.00';
+    } else {
+
+      var integer = new_value.substring(0, pos);
+      var decimals = new_value.substring(pos + 1);
+
+      while (decimals.length < 2) decimals = decimals + '0';
+
+      new_value = integer + '.' + decimals;
+
+    };
+
+    return new_value;
+
+  };
 
   var key = document.querySelector('#houses-script').getAttribute('token');
   var loc = document.querySelector('#houses-script').getAttribute('loc');
@@ -13,15 +35,22 @@ var initCheerAlert = function () {
 
   } else if (loc === 'se') {
 
+    viewerName = document.querySelector('#name').textContent;
+    amountString = document.querySelector('#amount').textContent;
+    userMessage = document.querySelector('#message').textContent;
+
   };
+viewerName = 'sirslaw';
 
   var amount = amountString.replace('$', '');
+  amount = '$' + addZeroes((amount));
 
   fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?token=' + key + '&name=' + viewerName, {
     method: "GET",
     json: true,
     headers: { 'Content-Type': 'application/json' }
   }).then(async (data) => {
+
     if (data.type === 'cors') {
 
       var response = (await data.json());
@@ -37,29 +66,32 @@ var initCheerAlert = function () {
 
         var alertImage, alertMessage, alertUserMessage;
 
-        houseHTMLString += "<span style='color:" + payload.color + ";'>";
-        amountHTMLString += "<span style='color:" + payload.color + ";'>";
-        viewerNameHTMLString += "<span style='color:" + payload.color + ";'>";
+        houseHTMLString += "<span style='color:" + payload.color + " !important;'>";
+        amountHTMLString += "<span style='color:" + payload.color + " !important;'>";
+        viewerNameHTMLString += "<span style='color:" + payload.color + " !important;'>";
 
         for (var i = 0; i < amount.length; i++) {
-          amountHTMLString += "<span class='animated-varter wiggle'>" + amount[i] + "</span>";
+          if (loc === 'sl') amountHTMLString += "<span class='animated-varter wiggle'>" + amount[i] + "</span>";
+          if (loc === 'se') amountHTMLString += "<span class='animated-letter wobble'>" + amount[i] + "</span>";
         };
 
         for (var i = 0; i < viewerName.length; i++) {
           if (viewerName[i] === " ") viewerNameHTMLString += "<span>&nbsp;</span>";
-          viewerNameHTMLString += "<span class='animated-varter wiggle'>" + viewerName[i] + "</span>";
+          if (loc === 'sl') viewerNameHTMLString += "<span class='animated-varter wiggle'>" + viewerName[i] + "</span>";
+          if (loc === 'se') viewerNameHTMLString += "<span class='animated-letter wobble'>" + viewerName[i] + "</span>";
         };
 
         for (var i = 0; i < houseName.length; i++) {
           if (houseName[i] === " ") houseHTMLString += "<span>&nbsp;</span>";
-          houseHTMLString += "<span class='animated-varter wiggle'>" + houseName[i] + "</span>";
+          if (loc === 'sl') houseHTMLString += "<span class='animated-varter wiggle'>" + houseName[i] + "</span>";
+          if (loc === 'se') houseHTMLString += "<span class='animated-letter wobble'>" + houseName[i] + "</span>";
         };
 
         houseHTMLString += "</span>";
         viewerNameHTMLString += "</span>";
         amountHTMLString += "</span>";
 
-        var alertMessageHTMLString = viewerNameHTMLString + " cheered " + amountHTMLString + " for <br>" + houseHTMLString + "!";
+        var alertMessageHTMLString = viewerNameHTMLString + " tipped " + amountHTMLString + " for <br>" + houseHTMLString + "!";
 
         if (loc === 'sl') {
 
@@ -68,6 +100,10 @@ var initCheerAlert = function () {
           document.querySelector('#alert-user-message').innerHTML = document.querySelector('#alert-user-message-child').innerHTML;
 
         } else if (loc === 'se') {
+
+          document.querySelector('#image-container').innerHTML = '<img src="' + houseBanner + '" alt="" style="height: 250px;margin-top:115px !important;" />';
+          document.querySelector('#text-container').innerHTML = alertMessageHTMLString;
+          document.querySelector('#message-container').innerHTML = userMessage;
 
         };
 
@@ -80,6 +116,9 @@ var initCheerAlert = function () {
 
         } else if (loc === 'se') {
 
+          document.querySelector('#text-container').innerHTML = viewerName + " cheered " + amountString;
+          document.querySelector('#message-container').innerHTML = userMessage;
+
         };
 
       };
@@ -89,4 +128,4 @@ var initCheerAlert = function () {
 
 };
 
-initCheerAlert();
+initTipAlert();
