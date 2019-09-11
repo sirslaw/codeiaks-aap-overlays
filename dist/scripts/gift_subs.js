@@ -3,19 +3,21 @@ var initGiftSubAlert = function () {
   var key = document.querySelector('#houses-script').getAttribute('token');
   var loc = document.querySelector('#houses-script').getAttribute('loc');
 
-  if (!viewerName || !amountString || !userMessage) var viewerName, amountString, userMessage;
+  if (!viewerName || !amountString || !userMessage || !receiverName) var viewerName, amountString, userMessage, receiverName;
 
   if (loc === 'sl') {
 
-    viewerName = document.querySelector('#name').textContent;
+    viewerName = document.querySelector('#gifter').textContent;
     amountString = document.querySelector('#amount').textContent;
     userMessage = document.querySelector('#alert-user-message').textContent;
+    receiverName = document.querySelector('#name').textContent;
 
   } else if (loc === 'se') {
 
-    viewerName = document.querySelector('#name').textContent;
+    viewerName = document.querySelector('#gifter').textContent;
     amountString = document.querySelector('#amount').textContent;
     userMessage = document.querySelector('#message').textContent;
+    receiverName = document.querySelector('#name').textContent;
 
   };
 
