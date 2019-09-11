@@ -18,7 +18,6 @@ var initSubAlert = function () {
     userMessage = document.querySelector('#message').textContent;
 
   };
-viewerName = 'sirslaw';
 
   var amount = amountString.replace('$', '');
 
@@ -39,6 +38,7 @@ viewerName = 'sirslaw';
         var houseHTMLString = "";
         var viewerNameHTMLString = "";
         var amountHTMLString = "";
+        var alertMessageHTMLString = '';
         var houseBanner = payload.image;
 
         var alertImage, alertMessage, alertUserMessage;
@@ -67,8 +67,6 @@ viewerName = 'sirslaw';
         houseHTMLString += "</span>";
         viewerNameHTMLString += "</span>";
         amountHTMLString += "</span>";
-
-        var alertMessageHTMLString = '';
 
         if (Math.abs(amount) <= 1 || amount === null || amount === undefined || amount === 'null' || amount === 'undefined') {
 

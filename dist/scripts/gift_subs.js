@@ -3,16 +3,19 @@ var initGiftSubAlert = function () {
   var key = document.querySelector('#houses-script').getAttribute('token');
   var loc = document.querySelector('#houses-script').getAttribute('loc');
 
-  if (!viewerName || !amountString || !userMessage || !receiverName) var viewerName, amountString, userMessage, receiverName;
+  if (!viewerName || !amountString || !userMessage) var viewerName, amountString, userMessage;
 
   if (loc === 'sl') {
 
-    viewerName = document.querySelector('#gifter').textContent;
-    receiverName = document.querySelector('#name').textContent;
+    viewerName = document.querySelector('#name').textContent;
     amountString = document.querySelector('#amount').textContent;
     userMessage = document.querySelector('#alert-user-message').textContent;
 
   } else if (loc === 'se') {
+
+    viewerName = document.querySelector('#name').textContent;
+    amountString = document.querySelector('#amount').textContent;
+    userMessage = document.querySelector('#message').textContent;
 
   };
 
@@ -23,6 +26,7 @@ var initGiftSubAlert = function () {
     json: true,
     headers: { 'Content-Type': 'application/json' }
   }).then(async (data) => {
+
     if (data.type === 'cors') {
 
       var response = (await data.json());
@@ -34,27 +38,30 @@ var initGiftSubAlert = function () {
         var houseHTMLString = "";
         var viewerNameHTMLString = "";
         var amountHTMLString = "";
-        var alertMessageHTMLString = "";
+        var alertMessageHTMLString = '';
         var houseBanner = payload.image;
 
         var alertImage, alertMessage, alertUserMessage;
 
-        houseHTMLString += "<span style='color:" + payload.color + ";'>";
-        amountHTMLString += "<span style='color:" + payload.color + ";'>";
-        viewerNameHTMLString += "<span style='color:" + payload.color + ";'>";
+        houseHTMLString += "<span style='color:" + payload.color + " !important;'>";
+        amountHTMLString += "<span style='color:" + payload.color + " !important;'>";
+        viewerNameHTMLString += "<span style='color:" + payload.color + " !important;'>";
 
         for (var i = 0; i < amount.length; i++) {
-          amountHTMLString += "<span class='animated-varter wiggle'>" + amount[i] + "</span>";
+          if (loc === 'sl') amountHTMLString += "<span class='animated-varter wiggle'>" + amount[i] + "</span>";
+          if (loc === 'se') amountHTMLString += "<span class='animated-letter wobble'>" + amount[i] + "</span>";
         };
 
         for (var i = 0; i < viewerName.length; i++) {
           if (viewerName[i] === " ") viewerNameHTMLString += "<span>&nbsp;</span>";
-          viewerNameHTMLString += "<span class='animated-varter wiggle'>" + viewerName[i] + "</span>";
+          if (loc === 'sl') viewerNameHTMLString += "<span class='animated-varter wiggle'>" + viewerName[i] + "</span>";
+          if (loc === 'se') viewerNameHTMLString += "<span class='animated-letter wobble'>" + viewerName[i] + "</span>";
         };
 
         for (var i = 0; i < houseName.length; i++) {
           if (houseName[i] === " ") houseHTMLString += "<span>&nbsp;</span>";
-          houseHTMLString += "<span class='animated-varter wiggle'>" + houseName[i] + "</span>";
+          if (loc === 'sl') houseHTMLString += "<span class='animated-varter wiggle'>" + houseName[i] + "</span>";
+          if (loc === 'se') houseHTMLString += "<span class='animated-letter wobble'>" + houseName[i] + "</span>";
         };
 
         houseHTMLString += "</span>";
@@ -79,6 +86,10 @@ var initGiftSubAlert = function () {
 
         } else if (loc === 'se') {
 
+          document.querySelector('#image-container').innerHTML = '<img src="' + houseBanner + '" alt="" style="height: 250px;margin-top:115px !important;" />';
+          document.querySelector('#text-container').innerHTML = alertMessageHTMLString;
+          document.querySelector('#message-container').innerHTML = userMessage;
+
         };
 
       } else {
@@ -89,6 +100,9 @@ var initGiftSubAlert = function () {
           document.querySelector('#alert-user-message').innerHTML = document.querySelector('#alert-user-child').innerHTML;
 
         } else if (loc === 'se') {
+
+          document.querySelector('#text-container').innerHTML = viewerName + " cheered " + amountString;
+          document.querySelector('#message-container').innerHTML = userMessage;
 
         };
 

@@ -40,7 +40,6 @@ var initTipAlert = function () {
     userMessage = document.querySelector('#message').textContent;
 
   };
-viewerName = 'sirslaw';
 
   var amount = amountString.replace('$', '');
   amount = '$' + addZeroes((amount));

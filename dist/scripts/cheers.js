@@ -18,7 +18,7 @@ var initCheerAlert = function () {
     userMessage = document.querySelector('#message').textContent;
 
   };
-viewerName = 'sirslaw'
+  
   var amount = amountString.replace('$', '');
 
   fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?token=' + key + '&name=' + viewerName, {
