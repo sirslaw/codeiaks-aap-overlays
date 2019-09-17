@@ -18,7 +18,7 @@ var initCheerAlert = function () {
     userMessage = document.querySelector('#message').textContent;
 
   };
-  
+
   var amount = amountString.replace('$', '');
 
   fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?token=' + key + '&name=' + viewerName, {
@@ -92,7 +92,7 @@ var initCheerAlert = function () {
 
         } else if (loc === 'se') {
 
-          document.querySelector('#text-container').innerHTML = viewerName + " cheered " + amountString;
+          document.querySelector('#text-container').innerHTML = viewerName + " cheered " + amountString + "!";
           document.querySelector('#message-container').innerHTML = userMessage;
 
         };

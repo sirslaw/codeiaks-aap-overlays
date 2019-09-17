@@ -115,7 +115,7 @@ var initTipAlert = function () {
 
         } else if (loc === 'se') {
 
-          document.querySelector('#text-container').innerHTML = viewerName + " cheered " + amountString;
+          document.querySelector('#text-container').innerHTML = viewerName + " tipped " + amountString + "!";
           document.querySelector('#message-container').innerHTML = userMessage;
 
         };

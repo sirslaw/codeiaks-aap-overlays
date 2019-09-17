@@ -101,7 +101,7 @@ var initSubAlert = function () {
 
         } else if (loc === 'se') {
 
-          document.querySelector('#text-container').innerHTML = viewerName + " cheered " + amountString;
+          document.querySelector('#text-container').innerHTML = viewerName + " subscribed for " + amountString + " months!";
           document.querySelector('#message-container').innerHTML = userMessage;
 
         };
