@@ -103,7 +103,7 @@ var initGiftSubAlert = function () {
 
         } else if (loc === 'se') {
 
-          document.querySelector('#text-container').innerHTML = viewerName + " cheered " + amountString;
+          document.querySelector('#text-container').innerHTML = viewerName + " gifted " + amountString + " subs!";
           document.querySelector('#message-container').innerHTML = userMessage;
 
         };

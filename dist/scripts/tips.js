@@ -42,7 +42,7 @@ var initTipAlert = function () {
   };
 
   var amount = amountString.replace('$', '');
-  amount = '$' + addZeroes((amount));
+  amount = addZeroes((amount));
 
   fetch('https://codeiaks-houses-api.herokuapp.com/grizzly/overlays/get/viewer?token=' + key + '&name=' + viewerName, {
     method: "GET",
